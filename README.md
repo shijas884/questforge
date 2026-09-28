@@ -1,0 +1,3 @@
+# QuestForge
+
+QuestForge is a level-based turn-based RPG battle engine built to learn and apply Object-Oriented Programming, clean architecture, and design patterns through one evolving project. The project separates the core game rules, such as characters, enemies, items, and combat, from infrastructure such as file storage and the command-line interface, while keeping tests separate from the application code. Each level adds a new concept or feature to the same codebase, allowing the project to grow from a simple battle system into a complete, maintainable RPG engine without requiring a major rewrite.
