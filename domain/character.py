@@ -6,20 +6,44 @@ class Character:
 
         self.name = name
 
-        self.health = health
+        self._health = health  # protected 'internal use, but not enforced 
+
+        self.__max_health = health  # private: name-mangled, harder to touch by accident
 
         self.attack_power = attack_power
+
+    @property
+    def health(self) -> int:
+        return self._health
+
+
+    @property
+    def is_alive(self) -> bool:
+        return self._health > 0
+
+
+    def take_damage(self,amount:int) -> None:
+        if amount < 0:
+            raise ValueError('Damage connot to negative')
+        
+        self._health = max(0, self._health - amount)
+
+    
+    def heal(self, amount) -> None:
+        if amount < 0:
+            return
+        self._health = min(self.__max_health, self._health + amount)
 
 
     def describe(self) -> str:
         return f"{self.name} has {self.health} HP and {self.attack_power} ATK"
-    
 
+    
     def attack(self, target:"Character") -> None:
-        target.health -= self.attack_power
+        if not self.is_alive:
+            return
+        target.take_damage(self.attack_power)
         print(f"{self.name} attacks {target.name} for {self.attack_power} damage!")
 
-    def heal(self, amount) -> None:
-        self.health += amount
-
+ 
 
