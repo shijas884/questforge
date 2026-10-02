@@ -1,19 +1,21 @@
 # python
-from domain.character import Character
+from domain.classes import Warrior,Mage, Cleric
 
 if __name__ == '__main__':
 
-    hero = Character("Aria",100,15)
-    shijas = Character("shijas",100,15)
+    warrior = Warrior('Bram')
 
-    hero.attack(shijas)
-    shijas.heal(100)
+    mage = Mage('Syllsa')
 
-    print(shijas.health)
+    warrior.attack(mage)
+    mage.special_ability(warrior)
+    print(f"Bram HP: {warrior.health}, Sylla HP: {mage.health}")
 
+
+
+    cleric = Cleric('cleric')
+    print(warrior.health)
+    cleric.special_ability(warrior)
+    print(warrior.health)
     
-
- 
-
-
 
