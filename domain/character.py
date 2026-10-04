@@ -1,6 +1,7 @@
 # python
+from abc import ABC,abstractmethod
 
-class Character:
+class Character(ABC):
 
     def __init__(self, name:str, health:int, attack_power:int):
 
@@ -44,6 +45,11 @@ class Character:
             return
         target.take_damage(self.attack_power)
         print(f"{self.name} attacks {target.name} for {self.attack_power} damage!")
+        
+    @abstractmethod
+    def special_ability(self,target:'Character') -> None:
+        #Every concrete Character MUST define its owen special move:
+        raise NotImplementedError
 
  
 
