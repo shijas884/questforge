@@ -1,21 +1,13 @@
 # python
-from domain.classes import Warrior,Mage, Cleric
+from domain.classes import Warrior,Mage, Cleric,Rogue
+from domain.battle import run_special_round,total_party_damage
 
 if __name__ == '__main__':
 
-    warrior = Warrior('Bram')
-
-    mage = Mage('Syllsa')
-
-    warrior.attack(mage)
-    mage.special_ability(warrior)
-    print(f"Bram HP: {warrior.health}, Sylla HP: {mage.health}")
-
-
-
+    party = [Warrior("Bram"), Mage("Sylla"), Rogue("Kade")]
     cleric = Cleric('cleric')
-    print(warrior.health)
-    cleric.special_ability(warrior)
-    print(warrior.health)
-    
+    total_party_damage(party,cleric)
+    print(cleric.health)
+
+
 

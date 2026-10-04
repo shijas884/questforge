@@ -46,6 +46,7 @@ class Rogue(Character):
         target.take_damage(crit)
         print(f"{self.name} lands a Backstab! {crit} critical damage to {target.name}")
 
+
 class Cleric(Character):
     def __init__(self, name, ):
         super().__init__(name, health=100, attack_power=30)
