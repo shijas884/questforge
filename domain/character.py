@@ -1,6 +1,6 @@
 # python
 from abc import ABC,abstractmethod
-
+from domain.inventory import Inventory
 class Character(ABC):
 
     def __init__(self, name:str, health:int, attack_power:int):
@@ -12,6 +12,21 @@ class Character(ABC):
         self.__max_health = health  # private: name-mangled, harder to touch by accident
 
         self.attack_power = attack_power
+
+        self._defense = 0
+
+        self.Inventory = Inventory()
+
+    @property
+    def defense(self) -> int:
+        return self._defense
+
+    def set_defense(self, amount:int) -> None:
+        if amount < 0 :
+            raise ValueError('Defense cannot be negative')
+        
+        self._defense = amount
+        
 
     @property
     def health(self) -> int:
@@ -26,8 +41,9 @@ class Character(ABC):
     def take_damage(self,amount:int) -> None:
         if amount < 0:
             raise ValueError('Damage connot to negative')
-        
-        self._health = max(0, self._health - amount)
+
+        autual_damge = max(0, amount - self.defense)
+        self._health = max(0, self._health - autual_damge)
 
     
     def heal(self, amount) -> None:
