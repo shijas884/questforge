@@ -1,4 +1,5 @@
 from .character import Character
+from domain.exceptions import InsuffcientManaError
 class Warrior(Character):
 
     def __init__(self, name: str):
@@ -24,14 +25,12 @@ class Mage(Character):
         cost = 20
 
         if self.mana < cost:
-            print(f"{self.name} doesn't have enough mana!")
-            return
+            raise InsuffcientManaError(f'{self.name} need {cost} mana')
 
         self.mana -=cost
         damage = self.attack_power * 3
 
         target.take_damage(damage)
-
         print(f"{self.name} casts Fireball! {damage} damage to {target.name}")
 
 class Rogue(Character):

@@ -3,35 +3,25 @@ from domain.classes import Warrior,Mage, Cleric,Rogue
 from domain.battle import run_special_round,total_party_damage
 from domain.character import Character
 from domain.items import HealthPotion,Weapon,Armor
+from domain.exceptions import QuestForgeErrot
 
-def main():
-
-    warrior = Warrior('warrior')
-
-    potion1 = HealthPotion()
-    potion2 = HealthPotion()
-    weapon = Weapon('iron sword', bonus_attack=10)
-
-    warrior.Inventory.add(potion1)
-    warrior.Inventory.add(potion2)
-    warrior.Inventory.add(weapon)
-
-    print(warrior.Inventory.use(0,warrior))
-    print(warrior.Inventory.use(0,warrior))
-    print(warrior.Inventory.use(0,warrior))
-
-
-    print(warrior.attack_power)
-
-
-
-
-
-    
 
 if __name__ == '__main__':
 
-    main()    
+
+    mana = Mage('Sylla')
+    warrior = Warrior('Bram')
+
+    try:
+        # sylla strat 50 mana. 3 fireballs(20 cost each) will fail
+
+        mana.special_ability(warrior)
+        mana.special_ability(warrior)
+        mana.special_ability(warrior)
+
+    except QuestForgeErrot as e:
+        print(e)
+
 
 
 
