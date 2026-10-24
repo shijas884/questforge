@@ -62,7 +62,7 @@ class Character(ABC):
             raise DeadCharacterError(f'{self.name} is dead and cannot act')
         
         target.take_damage(self.attack_power)
-        print(f"{self.name} attacks {target.name} for {self.attack_power} damage!")
+        return(f"{self.name} attacks {target.name} for {self.attack_power} damage!")
         
     @abstractmethod
     def special_ability(self,target:'Character') -> None:
