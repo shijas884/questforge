@@ -1,26 +1,18 @@
 # python
-from petterns.creational import CharacterFactory,EnemyBuilder
-from domain.items import HealthPotion
+from petterns.singleton import GameManager
+
+# Get the manager and set some state
+manager1 = GameManager()
+manager1.difficulty = 'hard'
+
+# Somewhere else in the code, we try to create a new manager 
+manager2 = GameManager()
 
 
-# if __name__ == '__main__':
+print(f'manger-2 diffcuty: {manager2.difficulty}')
+# out put 'hard'  because manager1 and manager2 are exact same object
 
-# using Factory
-
-player = CharacterFactory.create('mage','shijas')
-
-# using Builder
-boss = (EnemyBuilder("Dragon")
-        .with_heath(500)
-        .with_attack(50)
-        .with_loot(HealthPotion())
-        .build()
-    )
-
-print(f'create{player.name}(HP:{player.health})')
-print(f'create{boss.name}(HP:{boss.health})')
-
-
+print(f'are they the same objects? {manager1 is manager2}')
 
 
 
