@@ -6,6 +6,7 @@ class GameManager:
         # Override the creation of the object to ensure only one exists
         if cls._instance is None:
             cls._instance = super().__new__(cls)
+            print(cls._instance)
             cls._instance._initialized = False
 
         return cls._instance
@@ -23,7 +24,7 @@ class GameManager:
     def strat_new_session(self, party:list) -> None:
         self.party = party
         self.turn_count = 0 
-
+ 
     def nest_turn(self) -> int:
         self.turn_count += 1
         return self.turn_count
