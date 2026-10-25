@@ -1,21 +1,24 @@
 # python
-from petterns.singleton import GameManager
-
-def manager1():
-    return GameManager()
-
-def manager2():
-    return GameManager()
+from domain.classes import Warrior
+from petterns.decorators import RageBuff, PoisonDebuff
 
 
-print(id(manager1()))
-print(id(manager2()))
-
-print(manager1() is manager2())
+hero = Warrior('Bram')
+print(f'Base attack:{hero.attack_power}')
 
 
+# Wrap the hero in a Ragebuff
+raging_hero = RageBuff(hero)
+print(f'Raging attack:{raging_hero.attack_power}')
+
+# Wrap the raging in a posonDebuff(Stacking!)
+poisoned_raging_hero = PoisonDebuff(raging_hero)
+print(f"Still raging attack: {poisoned_raging_hero.attack_power}")
 
 
+# Trigger the poison
+print(poisoned_raging_hero.tick())
+print(f"HP after poison: {poisoned_raging_hero.health}")
 
     
   
