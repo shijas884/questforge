@@ -6,13 +6,11 @@ class CharacterBuff(Character):
     def __init__(self, wrapped:Character):
         # We don't call super().__init__because we are Wrappong,
         # not subclassing the state
-
         self._wrapped = wrapped
 
     def __getattr__(self, name):
        # Delegate any attribute/method not explicitly overridden
        #  to the wrapped object
-       
        return getattr(self._wrapped, name)
 
     @property
@@ -23,13 +21,13 @@ class CharacterBuff(Character):
         return self._wrapped.special_ability(target)
 
 
+
 class RageBuff(CharacterBuff):
 
     @property
     def attack_power(self):
         # Apply the 50% increase to whatever the underlying attack
         #  power is 
-
         return int(self._wrapped.attack_power *1.5)
 
     def __repr__(self):
